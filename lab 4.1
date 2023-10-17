@@ -1,0 +1,28 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    // Задані константи - координати центру та радіус кола
+    const double circle_center_x = 0.0;
+    const double circle_center_y = 0.0;
+    const double circle_radius = 5.0;
+
+    double point_x, point_y;
+
+    // Ввід координат точки
+    cout << "Введіть координати точки (x y): ";
+    cin >> point_x >> point_y;
+
+    // Обчислення відстані від точки до центру кола
+    double distance = sqrt(pow(point_x - circle_center_x, 2) + pow(point_y - circle_center_y, 2));
+
+    // Перевірка, чи точка лежить в середині кола
+    if (distance <= circle_radius) {
+        cout << "Точка лежить в середині кола." << endl;
+    } else {
+        cout << "Точка знаходиться за межами кола." << endl;
+    }
+
+    return 0;
+}
