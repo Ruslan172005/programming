@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "UKR");
+
+    // Початкові і кінцеві значення автопробігу
+    double initial_run = 67308.0;
+    double final_run = 68750.0;
+
+    // Кількість пального при заправці
+    double fuel1 = 11.7, fuel2 = 14.3, fuel3 = 12.2, fuel4 = 8.5;
+
+    // Загальний пробіг під час поїздки
+    double total_run = final_run - initial_run;
+    // Загальний об'єм пального, витраченого під час поїздки
+    double total_fuel = fuel1 + fuel2 + fuel3 + fuel4;
+    // Розрахунок розхіду бензину(км/л)
+    double consumed_fuel = total_run / total_fuel;
+    // Виведення результату на екран
+    cout << "Розхiд бензину(л/км) " << consumed_fuel << endl;
+
+    return 0;
+}
