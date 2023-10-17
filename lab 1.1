@@ -1,0 +1,21 @@
+#include <iostream>
+
+int main() {
+	setlocale(LC_ALL, "UKR");
+
+	double width = 30.0; // Ширина(м)
+	double lenght = 40.0; // Довжина(м)
+	double numberFloors = 2.5; // Число поверхiв
+	double auxiliaryArea = 825.0; // Площа не житлових примiщень(м^2)
+	double totalCost = 150000.0; // Цiна будинку без вартостi землi(грн)
+
+	// Обчислення загальної житлової площi будинку
+	double totalArea = width * lenght * numberFloors;
+
+	// Обчислення вартостi одного квадратного метра житлової площi
+	double costPerSquareMeter = totalCost / (totalArea - auxiliaryArea);
+
+	std::cout << "Вартiсть одного квадратного метра житлової площi: " << costPerSquareMeter << " грн/м^2" << std::endl;
+
+	return 0;
+}
