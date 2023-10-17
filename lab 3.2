@@ -1,0 +1,36 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "UKR");
+	// Заданi координати точок
+	int i = 0; // Значення 'i' згiдно з вихiднмим даними
+
+	double A_x = 0, A_y = 0;
+	double B_x = i, B_y = i + 1;
+	double C_x = -i, C_y = i + 1;
+
+	// Визначаємо сторони трикутника
+	double AB = sqrt(pow(B_x - A_x, 2) + pow(B_y - A_y, 2));
+	double BC = sqrt(pow(C_x - B_x, 2) + pow(C_y - B_y, 2));
+	double AC = sqrt(pow(C_x - A_x, 2) + pow(C_y - A_y, 2));
+
+	// Визначаємо пiвпериметр
+	double s = (AB + BC + AC) / 2;
+
+	// Обчислюємо площi трикутника за формулою герона
+	double S = sqrt(s * (s - AB) * (s - BC) * (s - AC));
+
+	// Обчислюємо hb
+	double hb = (2 * S) / AC;
+
+	// Обчислюємо бисектриси
+	double Wa = (2 * sqrt(AB * AC * s * (s - BC))) / (AB + AC);
+
+	cout << "Висота hb = " << hb << endl;
+	cout << "Бiсектриса Wa = " << Wa << endl;
+
+	return 0;
+
+}

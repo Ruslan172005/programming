@@ -1,0 +1,33 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "UKR");
+	int m, h, v;
+	int const g = 9.8;
+	char choice;
+	cout << "Введiть масу: ";
+	cin >> m;
+
+	cout << "Введiть висота: ";
+	cin >> h;
+
+	cout << "Введiть швидкiсть: ";
+	cin >> v;
+
+	cout << "Введiть букву в залежностi вiд бажаної дiї(E,P): " << endl;
+	cin >> choice;
+
+	if (choice == 'E' || choice == 'e') {
+		double E = m * pow(v, 2) / 2;
+		cout << "Кiнетична енергiя': " << E << endl;
+		
+
+	}
+	else if (choice == 'P' || choice == 'p') {
+		double P = m * g * h;
+		cout << "Потенцiальна енергiя: " << P << endl;
+	}
+	return 0;
+}
