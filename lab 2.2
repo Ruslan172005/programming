@@ -1,0 +1,43 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "UKR");
+
+	int point1, point2, point3; // Оцiнки
+	double cof1, cof2, cof3;    // Коефiцiєнти
+
+	cout << "Введiть першу оцiнку: ";
+	cin >> point1;
+
+	cout << "Введiть другу оцiнку: ";
+	cin >> point2;
+
+	cout << "Введiть третю оцiнку: ";
+	cin >> point3;
+
+	cout << "Введiть перший коефiцiєнт: ";
+	cin >> cof1;
+
+	cout << "Введiть другий коефiцiєнт: ";
+	cin >> cof2;
+
+	cout << "Введiть третiй коефiцiєнт: ";
+	cin >> cof3;
+
+	// Вирахування оцiнок
+	double FinalPoint1 = point1 * cof1;
+	double FinalPoint2 = point2 * cof2;
+	double FinalPoint3 = point3 * cof3;
+	// Знаходимо середнє	
+	double AveragePoint = point1 * cof1 + point2 * cof2 + point3 * cof3 / (cof1 + cof2 + cof3);
+
+	cout << fixed << setprecision(2);
+	cout << "Оцiнки з коефiцiєнтом(1): " << FinalPoint1 << endl;
+	cout << "Оцiнки з коефiцiєнтом(2): " << FinalPoint2 << endl;
+	cout << "Оцiнки з коефiцiєнтом(3): " << FinalPoint3 << endl;
+	cout << "Середнє арифметичне значення оцiнок: " << AveragePoint << endl; // 83.35 вiдповiдь
+
+	return 0;
+}
