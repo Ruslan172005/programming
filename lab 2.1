@@ -1,0 +1,44 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "UKR");
+	double odometr_start, odometr_end;
+
+	cout << "Введiть кiлькiсть бензину пiд час першої заправки: "  << endl;
+	double fuel1;
+	cin >> fuel1;
+
+	cout << "Введiть кiлькiсть бензину пiд час другої заправки: "  << endl;
+	double fuel2;
+	cin >> fuel2;
+
+	cout << "Введiть кiлькiсть бензину пiд час третьої заправки: " << endl;
+	double fuel3;
+	cin >> fuel3;
+
+	cout << "Введiть кiлькiсть бензину пiд час четвертої заправки: "  << endl;
+	double fuel4;
+	cin >> fuel4;
+
+	cout << "Введiть початкове значення на одометрi: " << endl;
+	cin >> odometr_start;
+
+	cout << "Введiть кiнцеве значення на одометрi: " << endl;
+	cin >> odometr_end;
+
+	cout << fixed << setprecision(2);
+
+
+	double Path = odometr_end - odometr_start;
+	cout << "Пройдений шлях: " << Path << endl;
+
+	double Allfuel = fuel1 + fuel2 + fuel3 + fuel4;
+	cout << "Загальна кiльксть заправленого палива: " << Allfuel << endl;
+
+	double FuelConsume = Path / Allfuel;
+	cout << "Загальний розхiд бензину: " << FuelConsume << endl;
+
+	return 0;
+}

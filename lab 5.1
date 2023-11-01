@@ -1,0 +1,56 @@
+#include <iostream>
+
+// Власний логiчний тип даних для перевiрки введених оцiнок
+bool isValidGrade(int grade) {
+    return grade >= 0 && grade <= 5;
+}
+
+int main() {
+    setlocale(LC_ALL, "UKR");
+    long studentID;
+    int grades[4];
+    double average = 0;
+
+    // Введення номера студента
+    std::cout << "Введiть iдентифiкацiйний номер студента: ";
+    std::cin >> studentID;
+
+    // Введення оцiнок та обчислення середнього арифметичного
+    for (int i = 0; i < 4; i++) {
+        std::cout << "Введiть оцiнку за " << i + 1 << "-й екзамен: ";
+        std::cin >> grades[i];
+
+        if (!isValidGrade(grades[i])) {
+            std::cout << "Помилка: Введiть коректну оцiнку (вiд 0 до 5)" << std::endl;
+            return 1;
+        }
+
+        average += grades[i];
+    }
+
+    average /= 4;
+
+    // Визначення результату
+    std::string result;
+    if (average >= 3) {
+        if (average < 4) {
+            result = "задовiльно";
+        }
+        else if (average < 5) {
+            result = "добре";
+        }
+        else {
+            result = "вiдмiнно";
+        }
+    }
+    else {
+        result = "не складено";
+    }
+
+    // Виведення результату
+    std::cout << "iдентифiкацiйний номер студента: " << studentID << std::endl;
+    std::cout << "Середня оцiнка: " << average << std::endl;
+    std::cout << "Результат: " << result << std::endl;
+
+    return 0;
+}

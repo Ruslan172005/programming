@@ -1,0 +1,27 @@
+#include <iostream>
+#include <cmath>
+
+int main() {
+	setlocale(LC_ALL, "UKR");
+	// Вiдстань (см)
+	double distance1 = 1.5;
+	double distance2 = 2.3;
+	double distance3 = 5.9;
+	double distance4 = 4.0;
+	// Масштаб карти (1 см = 0.25км)
+	double mapScale = 0.25;
+	// Обчислення вiдстаней в кiлометрах
+	double distanceKm1 = round((distance1 * mapScale) * 10.0) / 10.0;
+	double distanceKm2 = round((distance2 * mapScale) * 10.0) / 10.0;
+	double distanceKm3 = round((distance3 * mapScale) * 10.0) / 10.0;
+	double distanceKm4 = round((distance4 * mapScale) * 10.0) / 10.0;
+	// Обчислення загального шляху
+	double totalDistance = distanceKm1 + distanceKm2 + distanceKm3 + distanceKm4;
+	std::cout << "Вiдстань мiж музеєм природознавства та картинною галереєю: " << distanceKm1 << " км" << std::endl;
+    std::cout << "Вiдстань мiж картинною галереєю та книжковим магазином: " << distanceKm2 << " км" << std::endl;
+	std::cout << "Вiдстань мiж книжковим магазином та концертом: " << distanceKm3 << " км" << std::endl;
+	std::cout << "Вiдстань мiж концертом та початковим пунктом: " << distanceKm4 << " км" << std::endl;
+	std::cout << "Загальний шлях: " << totalDistance << " км" << std::endl;
+
+	return 0;
+}
