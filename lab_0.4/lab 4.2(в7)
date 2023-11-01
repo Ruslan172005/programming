@@ -1,27 +1,20 @@
 #include <iostream>
-#include <cmath>
 using namespace std;
 
 int main() {
     setlocale(LC_ALL, "UKR");
-    double a, b, c;
-    cout << "Введiть довжини сторiн трикутника (a, b, c): ";
-    cin >> a >> b >> c;
+    int age;
 
-    // Обчислення пiвпериметра
-    double s = (a + b + c) / 2.0;
+    cout << "Введiть свiй вiк: ";
+    cin >> age;
 
-    // Обчислення площi трикутника за формулою Герона
-    double area = sqrt(s * (s - a) * (s - b) * (s - c));
-
-    // Обчислення висоти (h_b)
-    double h_b = (2 * area) / a;
-
-    // Обчислення бiсектриси (W_a)
-    double W_a = (2 * sqrt(b * c * s * (s - a))) / (b + c);
-
-    cout << "Висота (h_b): " << h_b << endl;
-    cout << "Бiсектриса (W_a): " << W_a << endl;
+    if (age >= 18) {
+        cout << "У вас є право голосу." << endl;
+    }
+    else {
+        int years_until_voting = 18 - age;
+        cout << "Вам потрiбно почекати ще " << years_until_voting << " рокiв, щоб мати право голосу." << endl;
+    }
 
     return 0;
 }
