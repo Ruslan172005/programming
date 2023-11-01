@@ -1,31 +1,45 @@
-#include <iostream>
+#include<iostream>
+#include<cmath>
 
-// Функцiя для обчислення кiнетичної енергiї
-double kineticEnergy(double m, double v) {
-    return 0.5 * m * v * v;
-}
-
-// Функцiя для обчислення потенцiальної енергiї
-double potentialEnergy(double m, double g, double h) {
-    return m * g * h;
-}
+using namespace std;
 
 int main() {
-    setlocale(LC_ALL, "UKR");
-    double m, v, h;
-    const double g = 9.81; // прискорення вiльного падiння
+  setlocale(LC_ALL, "UKR");
+  // Const numbers
+  const double r = 5.0;
+  const double X_center = 5.0;
+  const double Y_center = 5.0;
+  // Задаємо значення за допомогою вводу
+  double x, y;
+  cout << "Введіть точку X: ";
+  cin >> x;
+  cout << "Введіть точку Y: ";
+  cin >> y;
+  double R;
+  double distance = pow(x - X_center, 2) + pow(y - Y_center, 2);
 
-    std::cout << "Введiть масу тiла (кг): ";
-    std::cin >> m;
+  // Тут у випадку якщо радіус більше або рівний дистанції з формули
+  // виводить що точка знаходиться в колі, в іншому випадку попросить вказати новий X, Y
+  if (distance <= r) {
+    cout << "Точка лежить в середині кола." << endl;
+  }
+  else {
+    cout << "Точка лежить за межами кола." << endl;
+    cout << "Введіть нові координати точки: " << endl;
+    cout << "Вкажіть новий X: ";
+    cin >> x;
+    cout << "Вкажіть новий Y: ";
+    cin >> y;
+    double distance = pow(x - X_center, 2) + pow(y - Y_center, 2);
 
-    std::cout << "Введiть швидкiсть тiла (м/с): ";
-    std::cin >> v;
+    if (distance <= r) {
+      cout << "Точка лежить всередині кола." << endl;
+    }
+    else {
+      cout << "Точка лежить за межами кола." << endl;
+    }
+  }
 
-    std::cout << "Введiть висоту тiла (м): ";
-    std::cin >> h;
 
-    std::cout << "Кiнетична енергiя: " << kineticEnergy(m, v) << " Дж\n";
-    std::cout << "Потенцiальна енергiя: " << potentialEnergy(m, g, h) << " Дж\n";
-
-    return 0;
+  return 0;
 }
