@@ -11,7 +11,7 @@ int main() {
 
     for (int i = 0; i < rows; i++) {
         double gallons = start_value + i * step;
-        double sacks = gallons / 0.0347;
+        double sacks = gallons * 0.0347;
         double liters = gallons * 3.785;
 
         std::cout << std::setw(15) << std::fixed << std::setprecision(2) << gallons;
