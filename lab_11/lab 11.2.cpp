@@ -1,82 +1,58 @@
 #include <iostream>
 #include <cmath>
 
-double f(double x) {
-    return std::abs(std::sin(2 * x - 1.5) + 3 * std::sin(4 * x)) + 2.38;
-}
-
 int main() {
-    char jobType;
-    double amount, tax, netAmount;
-    int variantNumber = 7; // Ваш номер варіанта
+    setlocale(LC_ALL, "UKR");
+    char workType;
+    double x, payment, tax, netPayment;
 
-    std::cout << "Введіть тип роботи (A, B, C): ";
-    std::cin >> jobType;
+    // Введення типу робіт
+    std::cout << "Введіть тип робіт (A, B або C): ";
+    std::cin >> workType;
 
-    switch (jobType) {
+    // Введення значення x
+    std::cout << "Введіть значення x: ";
+    std::cin >> x;
+
+    // Розрахунок оплати в залежності від типу робіт
+    switch (workType) {
     case 'A':
-        amount = 100 * f(variantNumber + 2) + 50;
-        tax = amount * 0.10;
+        payment = 100 * std::cos(x * x + 1) - std::abs(std::sin(2 * x) - 5.76) + 50;
         break;
     case 'B':
-        amount = 150 * f(variantNumber + 3) + 100;
-        tax = amount * 0.15;
+        payment = 150 * std::sin(x) - std::pow(std::cos(x), 3) * std::sin(x * x - 4.2) + 4.27 + 100;
         break;
     case 'C':
-        amount = 200 * f(variantNumber + 4) + 135;
-        tax = amount * 0.20;
+        payment = 200 * std::abs(std::sin(12 * x) * std::cos(std::abs(2 * x)) / 3) + 4.21 + 135;
         break;
     default:
-        std::cout << "Невірний тип роботи.\n";
-        return -1;
+        std::cout << "Неправильний тип робіт. Введіть A, B або C." << std::endl;
+        return 1; // Повернення коду помилки
     }
 
-    netAmount = amount - tax;
-
-    std::cout << "Нарахована сума: " << amount << "\n";
-    std::cout << "Сума податку: " << tax << "\n";
-    std::cout << "Сума до видачі: " << netAmount << "\n";
-
-    return 0;
-}
-#include <iostream>
-#include <cmath>
-
-double f(double x) {
-    return std::abs(std::sin(2 * x - 1.5) + 3 * std::sin(4 * x)) + 2.38;
-}
-
-int main() {
-    char jobType;
-    double amount, tax, netAmount;
-    int variantNumber = 7; // Ваш номер варіанта
-
-    std::cout << "Введіть тип роботи (A, B, C): ";
-    std::cin >> jobType;
-
-    switch (jobType) {
-    case 'A':
-        amount = 100 * f(variantNumber + 2) + 50;
-        tax = amount * 0.10;
-        break;
-    case 'B':
-        amount = 150 * f(variantNumber + 3) + 100;
-        tax = amount * 0.15;
-        break;
-    case 'C':
-        amount = 200 * f(variantNumber + 4) + 135;
-        tax = amount * 0.20;
-        break;
-    default:
-        std::cout << "Невірний тип роботи.\n";
-        return -1;
+    // Розрахунок податку та суми до видачі
+    if (workType == 'A') {
+        tax = 0.1 * payment;
+    }
+    else if (workType == 'B') {
+        tax = 0.15 * payment;
+    }
+    else {
+        tax = 0.2 * payment;
     }
 
-    netAmount = amount - tax;
+    netPayment = payment - tax;
 
-    std::cout << "Нарахована сума: " << amount << "\n";
-    std::cout << "Сума податку: " << tax << "\n";
-    std::cout << "Сума до видачі: " << netAmount << "\n";
+    // Виведення результатів
+    std::cout << "Нарахована сума: " << payment << std::endl;
+    std::cout << "Сума податку: " << tax << std::endl;
+    std::cout << "Сума до видачі: " << netPayment << std::endl;
+
+    // Використання команди goto
+    goto end;
+
+    // Мітка для команди goto
+end:
 
     return 0;
 }
