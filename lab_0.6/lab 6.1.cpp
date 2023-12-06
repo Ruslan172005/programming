@@ -3,11 +3,21 @@
 
 int main() {
     setlocale(LC_ALL, "UKR");
-    double start_value = 1.0;  // Початкове значення міри (1 галон)
-    double step = 0.1;        // Крок зміни значення
-    int rows = 10;            // Кількість рядків у таблиці
+    double start_value;  // Початкове значення мiри (галони)
+    double step;        // Крок змiни значення
+    int rows;            // Кiлькiсть рядкiв у таблицi
 
-    std::cout << std::setw(15) << "Галон (США)" << std::setw(15) << "Сак" << std::setw(15) << "Літр" << std::endl;
+    // Введення вхiдних даних вiд користувача
+    std::cout << "Введiть початкове значення мiри (галони): ";
+    std::cin >> start_value;
+
+    std::cout << "Введiть крок змiни значення: ";
+    std::cin >> step;
+
+    std::cout << "Введiть кiлькiсть рядкiв у таблицi: ";
+    std::cin >> rows;
+
+    std::cout << std::setw(15) << "Галон (США)" << std::setw(15) << "Сак" << std::setw(15) << "Лiтр" << std::endl;
 
     for (int i = 0; i < rows; i++) {
         double gallons = start_value + i * step;
