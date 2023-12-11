@@ -1,59 +1,111 @@
 #include <iostream>
-#include <fstream>
 #include <vector>
+#include <fstream>
+using namespace std;
+//Функція для зчитування матриці у файл
+vector<vector<int>> readMatrixFromFile(const string& filename, int n) {
+    ifstream file(filename);
+    vector<vector<int>> matrix;
 
-// Функція для зчитування матриці з файлу
-std::vector<std::vector<int>> readMatrixFromFile(const std::string& filename, int& n) {
-    std::ifstream file(filename);
-    file >> n;
-
-    std::vector<std::vector<int>> matrix(n, std::vector<int>(n));
-
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            file >> matrix[i][j];
+    if (file.is_open()) {
+        int num;
+        for (int i = 0; i < n; ++i) {
+            vector<int> row;
+            for (int j = 0; j < n; ++j) {
+                file >> num;
+                row.push_back(num);
+            }
+            matrix.push_back(row);
         }
+        file.close();
+    }
+    else {
+        cerr << "Unable to open file " << filename << endl;
     }
 
     return matrix;
 }
 
-// Функція для запису матриці у файл
-void writeMatrixToFile(const std::string& filename, const std::vector<std::vector<int>>& matrix) {
-    std::ofstream file(filename);
+//Функція для запису матриці у файл
+void writeMatrixToFile(const string& filename, const vector<vector<int>>& matrix) {
+    ofstream file(filename);
 
-    for (const auto& row : matrix) {
-        for (int element : row) {
-            file << element << " ";
+    if (file.is_open()) {
+        for (const auto& row : matrix) {
+            for (int num : row) {
+                file << num << " ";
+            }
+            file << endl;
         }
-        file << std::endl;
+        file.close();
+    }
+    else {
+        cout << "Unable to open file: " << filename << endl;
     }
 }
-
-// Функція для обчислення матриці C
-std::vector<std::vector<int>> calculateMatrixC(const std::vector<std::vector<int>>& A, const std::vector<std::vector<int>>& B) {
+//обчислення матриці C за формулою
+vector<vector<int>> calculateMatrixC(const vector<vector<int>>& A, const vector<vector<int>>& B) {
     int n = A.size();
-    std::vector<std::vector<int>> C(n, std::vector<int>(n));
+    vector<vector<int>> C(n, vector<int>(n, 0));
 
-    // Реалізуйте свої обчислення матриці C тут, використовуючи A і B
+    //Обчислення 2AB
+    vector<vector<int>> temp1(n, vector<int>(n, 0));
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            for (int k = 0; k < n; ++k) {
+                temp1[i][j] += 2 * A[i][k] * B[k][j];
+            }
+        }
+    }
+
+    //Обчислення BA^3
+    vector<vector<int>> temp2(n, vector<int>(n, 0));
+    vector<vector<int>> A_cubed = A; // A_cubed = A^1
+
+    //Обчислення A^3
+    for (int p = 0; p < 2; ++p) { // Підносимо A до степеня 3
+        vector<vector<int>> temp(n, vector<int>(n, 0));
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                for (int k = 0; k < n; ++k) {
+                    temp[i][j] += A_cubed[i][k] * A[k][j];
+                }
+            }
+        }
+        A_cubed = temp;
+    }
+
+    //Обчислення BA^3
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            for (int k = 0; k < n; ++k) {
+                temp2[i][j] += B[i][k] * A_cubed[k][j];
+            }
+        }
+    }
+
+    //Обчислення C = 2AB + BA^3
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            C[i][j] = temp1[i][j] + temp2[i][j];
+        }
+    }
 
     return C;
 }
+int main()
+{
+    int i = 7;
+    int n = i + 4;
 
-int main() {
-    int n;
+    //Зчитування матриць з файлів
+    vector<vector<int>> A = readMatrixFromFile("a.txt", n);
+    vector<vector<int>> B = readMatrixFromFile("b.txt", n);
 
-    // Зчитати матриці A та B з файлів
-    std::vector<std::vector<int>> A = readMatrixFromFile("a.txt", n);
-    std::vector<std::vector<int>> B = readMatrixFromFile("b.txt", n);
+    //Обчислення матриці C
+    vector<vector<int>> matrixC = calculateMatrixC(A, B);
 
-    // Обчислити матрицю C
-    std::vector<std::vector<int>> C = calculateMatrixC(A, B);
-
-    // Записати результат у файл
-    writeMatrixToFile("c.txt", C);
-
-    std::cout << "Результати обчислень збережено у файлі c.txt." << std::endl;
-
+    //Запис результату у файл
+    writeMatrixToFile("c.txt", matrixC);
     return 0;
 }
