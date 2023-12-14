@@ -2,39 +2,9 @@
 #include <string>
 #include <regex>
 #include <stdexcept>
-
+#include "phone_number.h"
 using namespace std;
 
-class PhoneNumber {
-private:
-    string country_code;
-    string city_code;
-    string local_number;
-
-public:
-    PhoneNumber(const string& international_number) {
-        static const regex pattern(R"(^\+(\d+)-(\d+)-(\w+)$)");
-        smatch match;
-        if (!regex_match(international_number, match, pattern)) {
-            throw invalid_argument("Телефонний номер має вмiстити  '+' i також вмiстити знак '-' : " + international_number);
-        }
-        country_code = match.str(1);
-        city_code = match.str(2);
-        local_number = match.str(3);
-    }
-
-    string GetCityCode() const {
-        return city_code;
-    }
-
-    string GetLocalNumber() const {
-        return local_number;
-    }
-
-    string GetInternationalNumber() const {
-        return "+" + country_code + "-" + city_code + "-" + local_number;
-    }
-};
 
 int main() {
     setlocale(LC_ALL, "UKR");
